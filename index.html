@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>نظام تقييم المردودية - EPSP</title>
+  <meta name="description" content="نظام بسيط لتسجيل الموظفين وتقييمهم بحسب معايير المردودية" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans p-6">
+
+  <div class="max-w-6xl mx-auto">
+    <div class="bg-white rounded shadow p-6 mb-6">
+      <div class="flex gap-4 items-center">
+        <img src="/assets/9438F561-11D8-4EC8-866A-7593DD49A2EF.jpeg" alt="logo" class="w-16 h-16 rounded object-cover border" />
+        <div>
+          <h1 class="text-xl font-bold">نظام تقييم منحة المردودية</h1>
+          <p class="text-sm text-gray-500">HTML + Tailwind + JavaScript · قابل للربط مع Cloudflare Workers</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Add employee -->
+      <section class="col-span-1 bg-white p-4 rounded shadow">
+        <h2 class="font-semibold mb-3">إضافة موظف جديد</h2>
+        <form id="employeeForm" class="space-y-3">
+          <input id="empName" required placeholder="الاسم الكامل" class="w-full p-2 border rounded" />
+          <input id="empMatricule" placeholder="الرقم الإداري (اختياري)" class="w-full p-2 border rounded" />
+          <select id="empRole" class="w-full p-2 border rounded">
+            <option value="common">السلك المشترك (30%)</option>
+            <option value="medical">الطبي (35%)</option>
+            <option value="paramedical">الشبه الطبي (35%)</option>
+            <option value="psych">النفسانيون (45%)</option>
+          </select>
+          <div class="flex gap-2">
+            <button class="flex-1 bg-blue-600 text-white p-2 rounded" type="submit">أضف الموظف</button>
+            <button id="importBtn" class="flex-1 bg-gray-200 p-2 rounded" type="button">استيراد JSON</button>
+          </div>
+        </form>
+
+        <div class="mt-4 text-xs text-gray-600">
+          <p>الخوارزمية: نقطة الانضباط تبدأ من 6، تطرح 1 لكل غياب خلال 3 أشهر، و0.5 لكل تأخر.</p>
+          <p class="mt-2">يمكنك التبديل إلى وضع الحفظ على Cloudflare Worker من خلال تعديل <code>API_URL</code> في <code>assets/script.js</code>.</p>
+        </div>
+      </section>
+
+      <!-- Employees list -->
+      <section class="col-span-1 md:col-span-1 bg-white p-4 rounded shadow">
+        <h2 class="font-semibold mb-3">الموظفون</h2>
+        <div id="employeesList" class="space-y-2 max-h-96 overflow-auto"></div>
+        <div class="mt-3 flex gap-2">
+          <button id="exportBtn" class="bg-green-600 text-white p-2 rounded flex-1">تصدير JSON</button>
+          <button id="clearBtn" class="bg-red-500 text-white p-2 rounded">مسح محلي</button>
+        </div>
+      </section>
+
+      <!-- Evaluation area -->
+      <section id="evalPanel" class="col-span-1 md:col-span-1 bg-white p-4 rounded shadow">
+        <h2 class="font-semibold mb-3">نموذج التقييم</h2>
+        <div id="evalArea" class="text-sm text-gray-600">اختر موظفًا للتقييم من القائمة.</div>
+      </section>
+    </div>
+
+    <!-- history / admin -->
+    <div class="mt-6 bg-white p-4 rounded shadow">
+      <h3 class="font-semibold mb-2">سجل التقييمات</h3>
+      <div id="history" class="max-h-56 overflow-auto text-sm"></div>
+    </div>
+
+    <footer class="mt-6 text-xs text-gray-500">
+      <p>ملحوظة: بعد رفع المشروع إلى GitHub، ضع شعارك في `assets/` بنفس اسم الملف المشار إليه أعلاه.</p>
+    </footer>
+  </div>
+
+  <script src="/assets/script.js"></script>
+</body>
+</html>
